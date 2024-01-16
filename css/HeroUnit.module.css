@@ -1,0 +1,92 @@
+.container {
+  background-color: white;
+}
+
+:global(.dark) .container {
+  background-color: rgb(17 24 39);
+}
+
+.padding {
+  max-width: 36rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.bigPadding {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+.smallPadding {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+.heroImage {
+  width: 5rem;
+  margin-bottom: 1.25rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.title {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+  color: rgb(17 24 39);
+  text-align: center;
+  font-weight: 900;
+  line-height: 1.25;
+  margin-bottom: 0.75rem;
+}
+
+:global(.dark) .title {
+  color: rgb(255 255 255);
+}
+
+.placeholderSpan {
+  opacity: 0.3;
+}
+
+.richText {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  text-align: center;
+  line-height: 1.625;
+  color: rgb(55 65 81);
+}
+
+:global(.dark) .richText {
+  color: rgb(243 244 246);
+}
+
+.code {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  background-color: rgb(229 231 235);
+  border-radius: 0.25rem;
+}
+
+:global(.dark) .code {
+  background-color: rgb(55 65 81);
+}
+
+.richTextLink {
+  color: rgb(14 165 233);
+}
+
+.richTextLink:hover {
+  color: rgb(2 132 199);
+}
+
+@media (min-width: 640px) {
+  .title {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
+}

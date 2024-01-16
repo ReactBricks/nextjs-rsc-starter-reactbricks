@@ -1,0 +1,31 @@
+{
+  "name": "nextjs-src-starter-reactbricks",
+  "private": true,
+  "license": "SEE LICENSE IN LICENSE",
+  "version": "0.0.1-beta.0",
+  "author": "Matteo Frana <f2@f2.net>",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "next": "14.0.4",
+    "next-themes": "^0.2.1",
+    "normalize.css": "^8.0.1",
+    "react": "^18.2.0",
+    "react-bricks": "4.2.0-beta.1",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "18.2.47",
+    "typescript": "^5"
+  },
+  "prettier": {
+    "printWidth": 80,
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  }
+}

@@ -1,0 +1,84 @@
+.section {
+  background-color: #f9fafb;
+}
+
+:global(.dark) .section {
+  background-color: rgb(17 24 39);
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .container {
+    margin-left: 5.55555%;
+    margin-right: 5.55555%;
+  }
+}
+
+@media (min-width: 1280px) {
+  .container {
+    margin-left: 11.1111%;
+    margin-right: 11.1111%;
+  }
+}
+
+.elementsInfo {
+  width: 100%;
+  margin-bottom: 3rem;
+}
+
+@media (min-width: 1024px) {
+  .elementsInfo {
+    width: auto;
+    margin-bottom: 0px;
+    margin-right: 2rem;
+  }
+
+  .container {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+}
+
+.linkLogo {
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.imageLogo {
+  width: 12rem;
+  height: 1.75rem;
+  object-fit: contain;
+  object-position: left;
+}
+
+.paragraphRichText {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  color: rgb(107 114 128);
+}
+
+:global(.dark) .paragraphRichText {
+  color: white;
+}
+
+.renderLink {
+  color: rgb(14 165 233);
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.renderLink:hover {
+  color: rgb(2 132 199);
+  transform: translateY(-1px);
+}
+
