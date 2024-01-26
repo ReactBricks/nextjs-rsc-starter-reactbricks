@@ -43,6 +43,7 @@ const getData = async (
   const page = await fetchPagePreview({
     token,
     config,
+    fetchOptions: { cache: 'no-store' },
   }).catch(() => {
     errorPage = true
     return null
