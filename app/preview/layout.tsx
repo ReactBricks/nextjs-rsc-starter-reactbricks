@@ -1,3 +1,4 @@
+import ReactBricksApp from '@/components/ReactBricksApp'
 import {
   PageViewer,
   cleanPage,
@@ -7,13 +8,11 @@ import {
   types,
 } from 'react-bricks/rsc'
 
-import ReactBricksApp from '@/components/ReactBricksApp'
 import ErrorNoFooter from '@/components/errorNoFooter'
 import ErrorNoHeader from '@/components/errorNoHeader'
 import ErrorNoKeys from '@/components/errorNoKeys'
 import PageLayout from '@/components/layout'
 import { ThemeProvider } from '@/components/themeProvider'
-import { i18n } from '@/i18n-config'
 import config from '@/react-bricks/config'
 
 import '@/css/style.css'
@@ -70,12 +69,6 @@ const getData = async (
   }
 }
 
-export async function generateStaticParams() {
-  return i18n.locales.map((locale) => ({
-    lang: locale,
-  }))
-}
-
 export default async function Layout({
   children,
   params,
@@ -98,7 +91,7 @@ export default async function Layout({
 
   return (
     <html lang={params.lang} suppressHydrationWarning>
-      <body className={`dark:bg-gray-900`}>
+      <body className={`dark:bg-[#0d1117]`}>
         <ThemeProvider
           attribute="class"
           storageKey="color-mode"

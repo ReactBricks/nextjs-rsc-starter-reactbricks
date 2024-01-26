@@ -3,8 +3,7 @@ import {
   JsonLd,
   PageViewer,
   cleanPage,
-  fetchPage,
-  fetchPages,
+  fetchPagePreview,
   getBricks,
   getMetadata,
   types,
@@ -16,8 +15,7 @@ import ErrorNoPage from '@/components/errorNoPage'
 import config from '@/react-bricks/config'
 
 const getData = async (
-  slug: any,
-  locale: string
+  token?: string
 ): Promise<{
   page: types.Page | null
   errorNoKeys: boolean
@@ -27,28 +25,23 @@ const getData = async (
   let errorPage: boolean = false
 
   if (!config.apiKey) {
-    errorNoKeys = true
-
     return {
       page: null,
-      errorNoKeys,
+      errorNoKeys: true,
       errorPage,
     }
   }
 
-  let cleanSlug = ''
-
-  if (!slug) {
-    cleanSlug = '/'
-  } else if (typeof slug === 'string') {
-    cleanSlug = slug
-  } else {
-    cleanSlug = slug.join('/')
+  if (!token) {
+    return {
+      page: null,
+      errorNoKeys,
+      errorPage: true,
+    }
   }
 
-  const page = await fetchPage({
-    slug: cleanSlug,
-    language: locale,
+  const page = await fetchPagePreview({
+    token,
     config,
   }).catch(() => {
     errorPage = true
@@ -62,34 +55,12 @@ const getData = async (
   }
 }
 
-export async function generateStaticParams({
-  params,
-}: {
-  params: { lang: string }
-}) {
-  if (!config.apiKey) {
-    return []
-  }
-
-  const allPages = await fetchPages(config.apiKey, { language: params.lang })
-
-  const pages = allPages
-    .map((page) =>
-      page.translations.map((translation) => ({
-        slug: translation.slug.split('/'),
-      }))
-    )
-    .flat()
-
-  return pages
-}
-
 export async function generateMetadata({
-  params,
+  searchParams,
 }: {
-  params: { lang: string; slug?: string[] }
+  searchParams: { p?: string }
 }): Promise<Metadata> {
-  const { page } = await getData(params.slug?.join('/'), params.lang)
+  const { page } = await getData(searchParams.p)
   if (!page?.meta) {
     return {}
   }
@@ -98,14 +69,11 @@ export async function generateMetadata({
 }
 
 export default async function Page({
-  params,
+  searchParams,
 }: {
-  params: { lang: string; slug?: string[] }
+  searchParams: { p?: string }
 }) {
-  const { page, errorNoKeys, errorPage } = await getData(
-    params.slug?.join('/'),
-    params.lang
-  )
+  const { page, errorNoKeys, errorPage } = await getData(searchParams.p)
 
   // Clean the received content
   // Removes unknown or not allowed bricks
@@ -121,7 +89,7 @@ export default async function Page({
       {pageOk && config && (
         <ClickToEdit
           pageId={pageOk?.id}
-          language={params.lang}
+          language={pageOk.language}
           editorPath={config.editorPath || '/admin/editor'}
           clickToEditSide={config.clickToEditSide}
         />
