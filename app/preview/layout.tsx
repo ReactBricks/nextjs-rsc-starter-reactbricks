@@ -106,7 +106,6 @@ export default async function Layout({
                     {headerOk && !errorHeader ? (
                       <PageViewer
                         page={headerOk}
-                        showClickToEdit={false}
                         main={false}
                       />
                     ) : (
@@ -116,7 +115,6 @@ export default async function Layout({
                     {footerOk && !errorFooter ? (
                       <PageViewer
                         page={footerOk}
-                        showClickToEdit={false}
                         main={false}
                       />
                     ) : (

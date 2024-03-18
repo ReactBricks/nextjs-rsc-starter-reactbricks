@@ -84,7 +84,7 @@ export default async function Page({
   return (
     <>
       {page?.meta && <JsonLd page={page}></JsonLd>}
-      {pageOk && !errorPage && !errorNoKeys && <PageViewer page={pageOk} />}
+      {pageOk && !errorPage && !errorNoKeys && <PageViewer page={pageOk} main />}
       {errorNoKeys && <ErrorNoKeys />}
       {errorPage && <ErrorNoPage />}
       {pageOk && config && (
