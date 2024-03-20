@@ -6,6 +6,8 @@ import { types } from 'react-bricks/rsc'
 
 const NextLinkClient: types.RenderLocalLink = ({
   href,
+  target,
+  rel,
   className,
   activeClassName,
   children,
@@ -21,7 +23,7 @@ const NextLinkClient: types.RenderLocalLink = ({
   }
 
   return (
-    <Link href={href} className={anchorClassName}>
+    <Link href={href} target={target} rel={rel} className={anchorClassName}>
       {children}
     </Link>
   )

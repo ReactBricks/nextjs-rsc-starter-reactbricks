@@ -5,6 +5,8 @@ import NextLinkClient from './NextLinkClient'
 
 const NextLink: types.RenderLocalLink = ({
   href,
+  target,
+  rel,
   className,
   activeClassName,
   isAdmin,
@@ -12,7 +14,7 @@ const NextLink: types.RenderLocalLink = ({
 }) => {
   if (isAdmin) {
     return (
-      <Link href={href} className={className || ''}>
+      <Link href={href} target={target} rel={rel} className={className || ''}>
         {children}
       </Link>
     )
