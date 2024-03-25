@@ -50,6 +50,7 @@ const getData = async (
     slug: cleanSlug,
     language: locale,
     config,
+    fetchOptions: { next: { revalidate: 3 } },
   }).catch(() => {
     errorPage = true
     return null
@@ -115,7 +116,9 @@ export default async function Page({
   return (
     <>
       {page?.meta && <JsonLd page={page}></JsonLd>}
-      {pageOk && !errorPage && !errorNoKeys && <PageViewer page={pageOk} main />}
+      {pageOk && !errorPage && !errorNoKeys && (
+        <PageViewer page={pageOk} main />
+      )}
       {errorNoKeys && <ErrorNoKeys />}
       {errorPage && <ErrorNoPage />}
       {pageOk && config && (
