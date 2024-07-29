@@ -16,12 +16,22 @@ import { ThemeProvider } from '@/components/themeProvider'
 import { i18n } from '@/i18n-config'
 import config from '@/react-bricks/config'
 
+import { Nunito_Sans } from 'next/font/google'
+
 import '@/css/style.css'
 
 export const metadata = {
   title: 'React Bricks Starter',
   description: 'Next.js with Server Components',
 }
+
+const nunito = Nunito_Sans({
+  subsets: ['latin'],
+  display: 'swap',
+  weight: ['300', '400', '600', '700', '800', '900'],
+  style: ['normal', 'italic'],
+  variable: '--font-nunito',
+})
 
 register(config)
 
@@ -98,7 +108,7 @@ export default async function Layout({
 
   return (
     <html lang={params.lang} suppressHydrationWarning>
-      <body className={`dark:bg-gray-900`}>
+      <body className={`${nunito.className} dark:bg-gray-900`}>
         <ThemeProvider
           attribute="class"
           storageKey="color-mode"
