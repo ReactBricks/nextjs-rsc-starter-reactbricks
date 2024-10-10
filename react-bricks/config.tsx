@@ -40,7 +40,6 @@ const config: types.ReactBricksConfig = {
   enableDefaultEmbedBrick: true,
   //permissions,  Fine-grained permissions for enterprise plans
   allowAccentsInSlugs: true,
-  experimentalSidebarRepeaterItems: true
 }
 
 export default config
