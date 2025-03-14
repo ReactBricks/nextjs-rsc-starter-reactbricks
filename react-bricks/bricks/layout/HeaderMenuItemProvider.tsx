@@ -8,7 +8,7 @@ import useOnClickOutside from './useClickOutside'
 interface IHeaderMenuItemProvider {
   open: boolean
   setOpen: any
-  ref: RefObject<HTMLDivElement> | null
+  ref: RefObject<HTMLDivElement | null> | null
 }
 
 export const HeaderMenuItemContext = createContext<IHeaderMenuItemProvider>({

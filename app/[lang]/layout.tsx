@@ -86,13 +86,18 @@ export async function generateStaticParams() {
   }))
 }
 
-export default async function Layout({
-  children,
-  params,
-}: {
-  children: React.ReactNode
-  params: { lang: string }
-}) {
+export default async function Layout(
+  props: {
+    children: React.ReactNode
+    params: Promise<{ lang: string }>
+  }
+) {
+  const params = await props.params;
+
+  const {
+    children
+  } = props;
+
   const { header, footer, errorNoKeys, errorHeader, errorFooter } =
     await getData(params.lang)
 

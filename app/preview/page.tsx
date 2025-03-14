@@ -14,6 +14,8 @@ import ErrorNoKeys from '@/components/errorNoKeys'
 import ErrorNoPage from '@/components/errorNoPage'
 import config from '@/react-bricks/config'
 
+export const dynamic = 'force-dynamic'
+
 const getData = async (
   token?: string
 ): Promise<{
@@ -56,11 +58,10 @@ const getData = async (
   }
 }
 
-export async function generateMetadata({
-  searchParams,
-}: {
-  searchParams: { p?: string }
+export async function generateMetadata(props: {
+  searchParams: Promise<{ p?: string }>
 }): Promise<Metadata> {
+  const searchParams = await props.searchParams
   const { page } = await getData(searchParams.p)
   if (!page?.meta) {
     return {}
@@ -69,11 +70,10 @@ export async function generateMetadata({
   return getMetadata(page)
 }
 
-export default async function Page({
-  searchParams,
-}: {
-  searchParams: { p?: string }
+export default async function Page(props: {
+  searchParams: Promise<{ p?: string }>
 }) {
+  const searchParams = await props.searchParams
   const { page, errorNoKeys, errorPage } = await getData(searchParams.p)
 
   // Clean the received content
@@ -84,7 +84,9 @@ export default async function Page({
   return (
     <>
       {page?.meta && <JsonLd page={page}></JsonLd>}
-      {pageOk && !errorPage && !errorNoKeys && <PageViewer page={pageOk} main />}
+      {pageOk && !errorPage && !errorNoKeys && (
+        <PageViewer page={pageOk} main />
+      )}
       {errorNoKeys && <ErrorNoKeys />}
       {errorPage && <ErrorNoPage />}
       {pageOk && config && (
